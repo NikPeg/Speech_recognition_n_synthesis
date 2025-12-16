@@ -17,9 +17,13 @@ class TTS:
     Поддерживаются форматы аудио: wav, ogg
     """
     default_init = {
-        "sample_rate": 16000,
-        "model_path": "/tf/cache/model4_2.onnx",  # путь к файлу TTS модели Silero
-         # путь к ffmpeg
+        "sample_rate": 22050,  # sample_rate из вашей модели
+        # Путь к модели можно задать через переменную окружения TTS_MODEL_PATH
+        # или передать при инициализации: TTS(model_path="путь/к/модели.onnx")
+        "model_path": os.getenv(
+            "TTS_MODEL_PATH", 
+            "/tf/nspeganov/Speech_recognition_n_synthesis/tts_data/final_model/final_model.onnx"
+        ),
     }
 
     def __init__(
